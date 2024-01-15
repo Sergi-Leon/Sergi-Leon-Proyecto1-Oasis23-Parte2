@@ -15,46 +15,46 @@ if (!$mesaId || !$estadoMesa || !$horaFinal) {
     include 'conexion.php';
 
     // Iniciar la transacción
-    mysqli_autocommit($conn, false);
+    $conn->beginTransaction();
 
     try {
         // Convertir la hora de finalización a formato de base de datos
         $horaFinalFormatoDB = date('Y-m-d H:i:s', strtotime($horaFinal));
 
         // Actualizar la mesa a estado libre
-        $queryUpdateMesa = "UPDATE tbl_mesas SET estado_mesa = 'Libre' WHERE id_mesa = ?";
-        $stmtUpdateMesa = mysqli_prepare($conn, $queryUpdateMesa);
-        mysqli_stmt_bind_param($stmtUpdateMesa, 'i', $mesaId);
-        mysqli_stmt_execute($stmtUpdateMesa);
+        $queryUpdateMesa = "UPDATE tbl_mesas SET estado_mesa = 'Libre' WHERE id_mesa = :mesaId";
+        $stmtUpdateMesa = $conn->prepare($queryUpdateMesa);
+        $stmtUpdateMesa->bindParam(":mesaId", $mesaId);
+        $stmtUpdateMesa->execute();
 
         // Verificar si la actualización fue exitosa
-        if (mysqli_affected_rows($conn) > 0) {
+        if ($stmtUpdateMesa->rowCount() > 0) {
             // Actualizar la hora final en la reserva
-            $queryUpdateReserva = "UPDATE tbl_reservas SET hora_final_reserva = ? WHERE id_mesa_reserva = ? AND hora_final_reserva IS NULL";
-            $stmtUpdateReserva = mysqli_prepare($conn, $queryUpdateReserva);
-            mysqli_stmt_bind_param($stmtUpdateReserva, 'si', $horaFinalFormatoDB, $mesaId);
-            mysqli_stmt_execute($stmtUpdateReserva);
+            $queryUpdateReserva = "UPDATE tbl_reservas SET hora_final_reserva = :horaFinalFormatoDB WHERE id_mesa_reserva = :mesaId AND hora_final_reserva IS NULL";
+            $stmtUpdateReserva = $conn->prepare($queryUpdateReserva);
+            $stmtUpdateReserva->bindParam(":horaFinalFormatoDB", $horaFinalFormatoDB);
+            $stmtUpdateReserva->bindParam(":mesaId", $mesaId);
+            $stmtUpdateReserva->execute();
 
             // Verificar si la actualización de la reserva fue exitosa
-            if (mysqli_affected_rows($conn) > 0) {
+            if ($stmtUpdateReserva->rowCount() > 0) {
                 // Confirmar la transacción
-                mysqli_commit($conn);
+                $conn->commit();
                 echo "Reserva finalizada con éxito.";
             } else {
-                throw new Exception("Error al actualizar la hora final de la reserva: " . mysqli_error($conn));
+                throw new Exception("Error al actualizar la hora final de la reserva: " . $stmtUpdateReserva->errorInfo()[2]);
             }
         } else {
-            throw new Exception("Error al actualizar el estado de la mesa: " . mysqli_error($conn));
+            throw new Exception("Error al actualizar el estado de la mesa: " . $stmtUpdateMesa->errorInfo()[2]);
         }
     } catch (Exception $e) {
         // Revertir la transacción en caso de error
-        mysqli_rollback($conn);
+        $conn->rollBack();
         echo "Error en la transacción: " . $e->getMessage();
     } finally {
         // Cerrar la conexión
-        mysqli_stmt_close($stmtUpdateMesa);
-        mysqli_stmt_close($stmtUpdateReserva);
-        mysqli_close($conn);
+        $stmtUpdateMesa->closeCursor();
+        $stmtUpdateReserva->closeCursor();
     }
 }
 

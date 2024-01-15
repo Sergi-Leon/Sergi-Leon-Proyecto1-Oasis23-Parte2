@@ -1,6 +1,6 @@
-# Proyecto1-Oasis23
+# Proyecto1-Oasis23-Parte2
 
-#Miembros del equipo: Sergio León, Adrián Herráez y Ivan Moreno
+#Miembros del equipo: Sergio León
 
 Usarios: 
 - ivanmoreno

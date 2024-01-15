@@ -20,7 +20,7 @@ if (!isset($_SESSION['user'])) {
 
 <div class="container">
 
-<form >
+<form>
     <a href="index.php">
         <img src="./img/botonvolver.png" alt="Volver" class="volver-button">
     </a>
@@ -36,17 +36,20 @@ $tipoSalaSeleccionado = $_GET['tipo_sala'] ?? '';
 $query = "SELECT m.id_mesa, m.nombre_mesa, m.estado_mesa, m.sillas_mesa, s.nombre_sala
           FROM tbl_mesas m
           INNER JOIN tbl_salas s ON m.id_sala_mesa = s.id_sala
-          WHERE s.tipo_sala = '$tipoSalaSeleccionado'
+          WHERE s.tipo_sala = :tipo_sala
           ORDER BY m.id_sala_mesa, m.id_mesa";
 
-$result = mysqli_query($conn, $query);
+$stmt = $conn->prepare($query);
+$stmt->bindParam(":tipo_sala", $tipoSalaSeleccionado);
+$stmt->execute();
+$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-if (mysqli_num_rows($result) > 0) {
+if (count($result) > 0) {
     $currentSalaId = null;
 
     echo "<h1>MESAS DE: $tipoSalaSeleccionado </h1>";
 
-    while ($row = mysqli_fetch_assoc($result)) {
+    foreach ($result as $row) {
         $mesaId = $row['id_mesa'];
         $nombreMesa = $row['nombre_mesa'];
         $estadoMesa = $row['estado_mesa'];
@@ -81,7 +84,7 @@ if (mysqli_num_rows($result) > 0) {
 }
 
 // Cerrar la conexión
-mysqli_close($conn);
+$conn = null;
 ?>
 </div>
 
