@@ -73,106 +73,74 @@
 
     <form name="formulario-filtros" method="post" action="">
         <div class="filtro-salas">
-            <?php
-            $tipo_salas_duplicadas = array();
-            if (!empty($sillas0)) {
-                foreach ($sillas0 as $fila) {
-                    $fila_tipo_sala = $fila["tipo_sala"];
-                    
-                    if (!isset($tipo_salas_duplicadas[$fila_tipo_sala])) {
-                        echo '
-                        <div>
-                            <input type="radio" id="' . $fila_tipo_sala . '" name="tipo-sala" value="' . $fila_tipo_sala . '" onclick="submitForm()" ';
-                    
-                        if ($_SESSION["tipo_sala"] == $fila_tipo_sala) {
-                            echo 'checked';
+            <label for="tipo-sala">Tipo de Sala:</label>
+            <select id="tipo-sala" name="tipo-sala" onchange="submitForm()">
+                <option value="%">Todos</option>
+                <?php
+                if (!empty($sillas0)) {
+                    $tipoSalasDuplicadas = array();
+                    foreach ($sillas0 as $fila) {
+                        $tipoSala = $fila["tipo_sala"];
+                        if (!isset($tipoSalasDuplicadas[$tipoSala])) {
+                            echo '<option value="' . $tipoSala . '"';
+                            if ($_SESSION["tipo_sala"] == $tipoSala) {
+                                echo ' selected';
+                            }
+                            echo '>' . $tipoSala . '</option>';
+                            $tipoSalasDuplicadas[$tipoSala] = true;
                         }
-                        
-                        echo '>
-                            <label for="' . $fila_tipo_sala . '">' . $fila_tipo_sala . '</label>
-                        </div>';
-    
-                        $tipo_salas_duplicadas[$fila_tipo_sala] = true;
                     }
                 }
-            } else {
-                echo '
-                <div>
-                    <input type="radio" id="tipo-sala" name="tipo-sala" value="tipo-sala" onclick="submitForm()">
-                    <label for="tipo-sala">No hay salas disponibles</label>
-                </div>';
-            }
-            ?>
+                ?>
+            </select>
+        </div>
+
+            <div class="filtro-salas">
+            <label for="sala">Sala:</label>
+            <select id="sala" name="sala" onchange="submitForm()">
+                <option value="%">Todas</option>
+                <?php
+                if (!empty($sillas0)) {
+                    $salasDuplicadas = array();
+                    foreach ($sillas0 as $fila) {
+                        $nombreSala = $fila["nombre_sala"];
+                        if (!isset($salasDuplicadas[$nombreSala])) {
+                            echo '<option value="' . $nombreSala . '"';
+                            if ($_SESSION["nombre_sala"] == $nombreSala) {
+                                echo ' selected';
+                            }
+                            echo '>' . $nombreSala . '</option>';
+                            $salasDuplicadas[$nombreSala] = true;
+                        }
+                    }
+                }
+                ?>
+            </select>
         </div>
 
         <div class="filtro-salas">
-            <?php
-            $salas_duplicadas = array();
-            
-            if (!empty($sillas0)) {
-                foreach ($sillas0 as $fila) {
-                    $fila_nombre_sala = $fila["nombre_sala"];
-                    
-                    if (!isset($salas_duplicadas[$fila_nombre_sala])) {
-                        echo '
-                        <div>
-                            <input type="radio" id="' . $fila_nombre_sala . '" name="sala" value="' . $fila_nombre_sala . '" onclick="submitForm()" ';
-                    
-                        if ($_SESSION["nombre_sala"] == $fila_nombre_sala) {
-                            echo 'checked';
+            <label for="sillas">Sillas:</label>
+            <select id="sillas" name="sillas" onchange="submitForm()">
+                <option value="%">Todas</option>
+                <?php
+                if (!empty($sillas0)) {
+                    $sillasDuplicadas = array();
+                    foreach ($sillas0 as $fila) {
+                        $sillasMesa = $fila["sillas_mesa"];
+                        if (!isset($sillasDuplicadas[$sillasMesa])) {
+                            echo '<option value="' . $sillasMesa . '"';
+                            if ($_SESSION["sillas_mesa"] == $sillasMesa) {
+                                echo ' selected';
+                            }
+                            echo '>' . $sillasMesa . ' SILLAS</option>';
+                            $sillasDuplicadas[$sillasMesa] = true;
                         }
-                        
-                        echo '>
-                            <label for="' . $fila_nombre_sala . '">' . $fila_nombre_sala . '</label>
-                        </div>';
-    
-                        $salas_duplicadas[$fila_nombre_sala] = true;
                     }
                 }
-            } else {
-                echo '
-                <div>
-                    <input type="radio" id="tipo-sala" name="tipo-sala" value="tipo-sala" onclick="submitForm()">
-                    <label for="tipo-sala">No hay salas disponibles</label>
-                </div>';
-            }
-            ?>
+                ?>
+            </select>
         </div>
 
-        <div class="filtro-salas">
-            <?php
-            $sillas_duplicadas = array();
-            
-            if (!empty($sillas0)) {
-                foreach ($sillas0 as $fila) {
-                    $fila_sillas_mesa = $fila["sillas_mesa"];
-                    
-                    if (!isset($sillas_duplicadas[$fila_sillas_mesa])) {
-                        echo '
-                        <div>
-                            <input type="radio" id="silla-' . $fila_sillas_mesa . '" name="sillas" value="' . $fila_sillas_mesa . '" onclick="submitForm()" ';
-                    
-                        if ($_SESSION["sillas_mesa"] == $fila_sillas_mesa) {
-                            echo 'checked';
-                        }
-                        
-                        echo '>
-                            <label for="silla-' . $fila_sillas_mesa . '">' . $fila_sillas_mesa . ' SILLAS</label>
-                        </div>';
-    
-                        $sillas_duplicadas[$fila_sillas_mesa] = true;
-                    }
-                }
-            } else {
-                echo '
-                <div>
-                    <input type="radio" id="tipo-sala" name="tipo-sala" value="tipo-sala" onclick="submitForm()">
-                    <label for="tipo-sala">No hay salas disponibles</label>
-                </div>';
-            }
-            ?>
-        </div>
-        
         <div class="filtro-salas2">
             <div class="filtro-salas filtro-medio">
                 <div>
@@ -268,7 +236,7 @@
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = './proc/reservar.php?mesa=' + mesaId + '&estado=' + (accion === 'Reservar' ? 'Ocupada' : 'Libre');
+                        window.location.href = './proc/ocupar.php?mesa=' + mesaId + '&estado=' + (accion === 'Reservar' ? 'Ocupada' : 'Libre');
                     }
                 });
             }

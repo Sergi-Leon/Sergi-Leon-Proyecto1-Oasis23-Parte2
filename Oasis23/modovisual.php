@@ -73,7 +73,7 @@ if (count($result) > 0) {
         $claseEstado = ($estadoMesa == 'Libre') ? 'libre' : 'ocupada';
 
         // La imagen de la mesa es un enlace al formulario de reserva
-        echo "<a href='formreserva.php?mesa_id=$mesaId&estado_mesa=$estadoMesa&tipo_sala=$tipoSalaSeleccionado'>";
+        echo "<a href='formocupar.php?mesa_id=$mesaId&estado_mesa=$estadoMesa&tipo_sala=$tipoSalaSeleccionado'>";
         echo "<img class='$claseEstado' src='$imagenMesa' alt='Mesa $nombreMesa - $estadoMesa'>";
         echo "</a>";
     }

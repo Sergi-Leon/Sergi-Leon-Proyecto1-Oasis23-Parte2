@@ -49,10 +49,9 @@ try {
 } catch (PDOException $e) {
     // Manejar errores de PDO
     echo "Error: " . $e->getMessage();
-} finally {
-    // Cerrar la conexión
-    $conn = null;
 }
+// Cerrar la conexión
+$conn = null;
 ?>
 
 <!DOCTYPE html>

@@ -51,11 +51,10 @@ if (!$mesaId || !$estadoMesa || !$horaFinal) {
         // Revertir la transacción en caso de error
         $conn->rollBack();
         echo "Error en la transacción: " . $e->getMessage();
-    } finally {
-        // Cerrar la conexión
-        $stmtUpdateMesa->closeCursor();
-        $stmtUpdateReserva->closeCursor();
     }
+    // Cerrar la conexión
+    $stmtUpdateMesa->closeCursor();
+    $stmtUpdateReserva->closeCursor();
 }
 
 // Redireccionar a visualT1.php después de procesar la finalización de la reserva

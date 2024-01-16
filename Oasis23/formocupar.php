@@ -57,7 +57,7 @@ if (!$mesaId || !$estadoMesa || !$tipoSala || !$idCamarero) {
 
                 // Si el estado de la mesa es libre, mostrar el formulario estándar
                 if ($estadoMesa == 'Libre') {
-                    echo "<form action='./proc/procreserva.php?tipo_sala=$tipoSala' method='post'>";
+                    echo "<form action='./proc/prococupar.php?tipo_sala=$tipoSala' method='post'>";
                     echo "<input type='hidden' name='mesa_id' value='$mesaId'>";
                     echo "<input type='hidden' name='estado_mesa' value='$estadoMesa'>";
                     echo "<input type='hidden' name='tipo_sala' value='$tipoSala'>"; // Modificado
@@ -71,7 +71,7 @@ if (!$mesaId || !$estadoMesa || !$tipoSala || !$idCamarero) {
                     echo "</form>";
                 } else { // Si el estado de la mesa es ocupada, mostrar formulario diferente
                     echo "<p>La mesa está ocupada actualmente. ¿Deseas finalizar la reserva?</p>";
-                    echo "<form action='./proc/procreservafinal.php?tipo_sala=$tipoSala' method='post'>";
+                    echo "<form action='./proc/prococuparfinal.php?tipo_sala=$tipoSala' method='post'>";
                     echo "<input type='hidden' name='mesa_id' value='$mesaId'>";
                     echo "<input type='hidden' name='estado_mesa' value='$estadoMesa'>";
                     echo "<input type='hidden' name='tipo_sala' value='$tipoSala'>"; // Modificado
@@ -92,10 +92,9 @@ if (!$mesaId || !$estadoMesa || !$tipoSala || !$idCamarero) {
     } catch (PDOException $e) {
         // Manejar errores de PDO
         echo "Error: " . $e->getMessage();
-    } finally {
-        // Cerrar la conexión
-        $conn = null;
     }
+    // Cerrar la conexión
+    $conn = null;
 }
 ?>
 </div>

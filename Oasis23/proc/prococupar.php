@@ -52,11 +52,10 @@ if (!$mesaId || !$estadoMesa || !$horaInicio || ($estadoMesa == 'Libre' && !$idC
         // Revertir la transacción en caso de error
         $conn->rollBack();
         echo "Error en la transacción: " . $e->getMessage();
-    } finally {
-        // Cerrar la conexión
-        $stmtUpdateMesa->closeCursor();
-        $stmtInsertReserva->closeCursor();
     }
+    // Cerrar la conexión
+    $stmtUpdateMesa->closeCursor();
+    $stmtInsertReserva->closeCursor();
 }
 
 // Redireccionar a visualT1.php después de procesar la reserva
