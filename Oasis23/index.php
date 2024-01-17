@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oasis23</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
@@ -29,30 +28,6 @@
         };
     </script>";
 
-    if (empty($_POST["tipo-sala"])) {
-        $_SESSION["tipo_sala"] = "%";
-    } else {
-        $_SESSION["tipo_sala"] = $_POST["tipo-sala"];
-    }
-
-    if (empty($_POST["sala"])) {
-        $_SESSION["nombre_sala"] = "%";
-    } else {
-        $_SESSION["nombre_sala"] = $_POST["sala"];
-    }
-
-    if (empty($_POST["sillas"])) {
-        $_SESSION["sillas_mesa"] = "%";
-    } else {
-        $_SESSION["sillas_mesa"] = $_POST["sillas"];
-    }
-
-    if (empty($_POST["estado"])) {
-        $_SESSION["estado_mesa"] = "%";
-    } else {
-        $_SESSION["estado_mesa"] = $_POST["estado"];
-    }
-
     include_once("proc/conexion.php");
 
     $sql0 = 'SELECT * FROM tbl_mesas INNER JOIN tbl_salas ON id_sala_mesa = id_sala';
@@ -73,71 +48,23 @@
 
     <form name="formulario-filtros" method="post" action="">
         <div class="filtro-salas">
-            <label for="tipo-sala">Tipo de Sala:</label>
-            <select id="tipo-sala" name="tipo-sala" onchange="submitForm()">
+            <label for="tiposala">Tipo de Sala:</label>
+            <select id="tiposala" name="tiposala">
                 <option value="%">Todos</option>
-                <?php
-                if (!empty($sillas0)) {
-                    $tipoSalasDuplicadas = array();
-                    foreach ($sillas0 as $fila) {
-                        $tipoSala = $fila["tipo_sala"];
-                        if (!isset($tipoSalasDuplicadas[$tipoSala])) {
-                            echo '<option value="' . $tipoSala . '"';
-                            if ($_SESSION["tipo_sala"] == $tipoSala) {
-                                echo ' selected';
-                            }
-                            echo '>' . $tipoSala . '</option>';
-                            $tipoSalasDuplicadas[$tipoSala] = true;
-                        }
-                    }
-                }
-                ?>
             </select>
         </div>
 
             <div class="filtro-salas">
             <label for="sala">Sala:</label>
-            <select id="sala" name="sala" onchange="submitForm()">
+            <select id="sala" name="sala">
                 <option value="%">Todas</option>
-                <?php
-                if (!empty($sillas0)) {
-                    $salasDuplicadas = array();
-                    foreach ($sillas0 as $fila) {
-                        $nombreSala = $fila["nombre_sala"];
-                        if (!isset($salasDuplicadas[$nombreSala])) {
-                            echo '<option value="' . $nombreSala . '"';
-                            if ($_SESSION["nombre_sala"] == $nombreSala) {
-                                echo ' selected';
-                            }
-                            echo '>' . $nombreSala . '</option>';
-                            $salasDuplicadas[$nombreSala] = true;
-                        }
-                    }
-                }
-                ?>
             </select>
         </div>
 
         <div class="filtro-salas">
-            <label for="sillas">Sillas:</label>
-            <select id="sillas" name="sillas" onchange="submitForm()">
+            <label for="mesa">Mesa:</label>
+            <select id="mesa" name="mesa">
                 <option value="%">Todas</option>
-                <?php
-                if (!empty($sillas0)) {
-                    $sillasDuplicadas = array();
-                    foreach ($sillas0 as $fila) {
-                        $sillasMesa = $fila["sillas_mesa"];
-                        if (!isset($sillasDuplicadas[$sillasMesa])) {
-                            echo '<option value="' . $sillasMesa . '"';
-                            if ($_SESSION["sillas_mesa"] == $sillasMesa) {
-                                echo ' selected';
-                            }
-                            echo '>' . $sillasMesa . ' SILLAS</option>';
-                            $sillasDuplicadas[$sillasMesa] = true;
-                        }
-                    }
-                }
-                ?>
             </select>
         </div>
 
@@ -247,3 +174,4 @@
     </div>
 </body>
 </html>
+<script src="js/script.js"></script>
