@@ -1,25 +1,26 @@
-document.addEventListener("DOMContentLoaded", function () {
-    var tiposala = document.getElementById("tiposala");
-    console.log(tiposala);
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "./ajax/tiposala.php");
-    xhr.onload = function () {
-        if (xhr.status == 200) {
-            tiposala.innerHTML = "";
-            var json = JSON.parse(xhr.responseText);
-            console.log(json);
-            tiposala.innerHTML = json;
-        }
-    };
-    xhr.send();
-
-    tiposala.addEventListener('change', function () {
-        saladato = tiposala.value;
-        console.log(saladato);
-        sala_mesa(saladato);
-    });
+var tiposala = document.getElementById("tiposala");
+var xhr = new XMLHttpRequest();
+xhr.open("POST", "./ajax/tiposala.php");
+xhr.onload = function () {
+    if (xhr.status == 200) {
+        tiposala.innerHTML = "";
+        var json = JSON.parse(xhr.responseText);
+        console.log(json);
+        tiposala.innerHTML = json;
+    }
+};
+xhr.send();
+tiposala.addEventListener('change', function () {
+    saladato = tiposala.value;
+    sala_mesa(saladato);
 });
+var salas = document.getElementById('sala');
+var mesas = document.getElementById('mesa');
+var estados = document.getElementById('estado');
+
+salas.addEventListener('change', mostrarTabla);
+mesas.addEventListener('change', mostrarTabla);
+estados.addEventListener('change', mostrarTabla);
 
 
 function sala_mesa(valor) {
@@ -50,39 +51,48 @@ function sala_mesa(valor) {
         }
     };
     xhr2.send(formdata2);
-    
+
+    var estado = document.getElementById("estado");
+    var xhr3 = new XMLHttpRequest();
+    var formdata3 = new FormData();
+    formdata3.append('estado', valor);
+    xhr3.open("POST", "./ajax/estado.php");
+    xhr3.onload = function () {
+        if (xhr3.status == 200) {
+            estado.innerHTML = "";
+            var json3 = JSON.parse(xhr3.responseText);
+            estado.innerHTML = json3;
+        }
+    };
+    xhr3.send(formdata3);
 }
-sala.addEventListener('change', ()=> {
-    mesadato = sala.value;
-    sala_mesa(mesadato)
-})
 
-mesa.addEventListener('change', ()=> {
-    silladato = mesa.value;
-    sala_mesa(silladato)
-})
-
-function submitForm() {
-    var formulario = document.forms["formulario-filtros"];
-    var formData = new FormData(formulario);
+function mostrarTabla() {
+    var tiposala = document.getElementById('tiposala').value;
+    console.log(tiposala);
+    var sala = document.getElementById('sala').value;
+    console.log(sala);
+    var mesa = document.getElementById('mesa').value;
+    console.log(mesa);
+    var estado = document.getElementById('estado').value;
+    console.log(sala);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../index.php", true);
+    xhr.open("POST", "./ajax/mostrarTabla.php");
 
-    xhr.onload = function () {
-        if (xhr.status == 200) {
-            // Manejar la respuesta según sea necesario
-            // Por ejemplo, si el servidor devuelve datos JSON, puedes procesarlos
-            var response = JSON.parse(xhr.responseText);
-            
-            // Actualizar la parte de la página que desees
-            var divTable = document.querySelector('.div-table');
-            divTable.innerHTML = response;  // Suponiendo que la respuesta es el nuevo contenido HTML para '.div-table'
+    // Configurar la función de devolución de llamada para manejar la respuesta
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Actualizar el contenido de la tabla con la respuesta del servidor
+            document.getElementById('tabla_resultados').innerHTML = xhr.responseText;
         }
     };
 
-    xhr.send(formData);
+    // Enviar los datos de los filtros al servidor
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("tiposala=" + tiposala + "&sala=" + sala + "&mesa=" + mesa + "&estado=" + estado);
 }
+
 
 function limpiarForm() {
     var formulario = document.forms["formulario-filtros"];

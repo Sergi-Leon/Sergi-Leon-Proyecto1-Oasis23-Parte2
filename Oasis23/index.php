@@ -52,18 +52,16 @@
             <select id="tiposala" name="tiposala">
                 <option value="%">Todos</option>
             </select>
-        </div>
-
-            <div class="filtro-salas">
             <label for="sala">Sala:</label>
             <select id="sala" name="sala">
                 <option value="%">Todas</option>
             </select>
-        </div>
-
-        <div class="filtro-salas">
             <label for="mesa">Mesa:</label>
             <select id="mesa" name="mesa">
+                <option value="%">Todas</option>
+            </select>
+            <label for="estado">Estado:</label>
+            <select id="estado" name="estado">
                 <option value="%">Todas</option>
             </select>
         </div>
@@ -71,29 +69,7 @@
         <div class="filtro-salas2">
             <div class="filtro-salas filtro-medio">
                 <div>
-                    <input type="radio" id="disponible" name="estado" value="Libre" onclick="submitForm()" 
-                    
-                    <?php  
-                    if ($_SESSION["estado_mesa"] == "Libre") {
-                        echo 'checked';
-                    }
-                    ?>
-                    >
-                    <label for="disponible">DISPONIBLE</label>
-                </div>
-                <div>
-                    <input type="radio" id="ocupada" name="estado" value="Ocupada" onclick="submitForm()"
-                    
-                    <?php  
-                    if ($_SESSION["estado_mesa"] == "Ocupada") {
-                        echo 'checked';
-                    }
-                    ?>
-                    >
-                    <label for="ocupada">OCUPADA</label>
-                </div>
-                <div>
-                    <a href="">Limpiar Filtros</a>
+                    <a type="button" href="">Limpiar Filtros</a>
                 </div>
             </div>
             <div class="filtro-salas filtro-medio">
