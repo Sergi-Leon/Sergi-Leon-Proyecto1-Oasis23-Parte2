@@ -63,6 +63,8 @@
             <label for="estado">Estado:</label>
             <select id="estado" name="estado">
                 <option value="%">Todas</option>
+                <option value="Libre">Libre</option>
+                <option value="Ocupada">Ocupada</option>
             </select>
         </div>
 
@@ -84,50 +86,9 @@
         </div>
     </form>
 
-    <div class="div-table">
+    <div class="div-table" id="tabla_resultados">
         <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Tipo Sala</th>
-                    <th>Nombre Sala</th>
-                    <th>Mesa</th>
-                    <th>Sillas</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
             <tbody>
-
-            <?php
-            if (!empty($sillas)) {
-                foreach ($sillas as $fila) {
-                    $fila_id_mesa = $fila["id_mesa"];
-                    $fila_tipo_sala = $fila["tipo_sala"];
-                    $fila_nombre_sala = $fila["nombre_sala"];
-                    $fila_nombre_mesa = $fila["nombre_mesa"];
-                    $fila_sillas_mesa = $fila["sillas_mesa"];
-                    $fila_estado_mesa = $fila["estado_mesa"];
-
-                    echo "
-                        <tr class='" . ($fila_id_mesa % 2 == 0 ? 'fila-par' : 'fila-impar') . "'>
-                            <td>" . $fila_tipo_sala . "</td>
-                            <td>" . $fila_nombre_sala . "</td>
-                            <td>" . $fila_nombre_mesa . "</td>
-                            <td>" . $fila_sillas_mesa . "</td>";
-                        
-                    if ($fila_estado_mesa == "Libre") {
-                        echo "<td id='mesa_libre'><a href='#' onclick='confirmarAccion(\"Reservar\", " . $fila_id_mesa . ")'>Reservar</a></td>";
-                    } else {
-                        echo "<td id='mesa_ocupada'><a href='#' onclick='confirmarAccion(\"Cancelar Reserva\", " . $fila_id_mesa . ")'>Cancelar Reserva</a></td>";
-                    }
-                    
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr>
-                <td>No hay mesas disponibles</td>
-            </tr>";
-            }
-            ?>
             <script>
             function confirmarAccion(accion, mesaId) {
                 Swal.fire({
@@ -139,7 +100,7 @@
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = './proc/ocupar.php?mesa=' + mesaId + '&estado=' + (accion === 'Reservar' ? 'Ocupada' : 'Libre');
+                        window.location.href = './proc/ocupar.php?mesa=' + mesaId + '&estado=' + (accion === 'Ocupar' ? 'Ocupada' : 'Libre');
                     }
                 });
             }
@@ -151,3 +112,4 @@
 </body>
 </html>
 <script src="js/script.js"></script>
+<script>window.onload = mostrarTabla();</script>

@@ -7,7 +7,7 @@ if (!isset($_SESSION["user"])) {
 include("../proc/conexion.php");
 
 $sala = $_POST['mesa'];
-$sql0 = 'SELECT nombre_mesa FROM tbl_mesas INNER JOIN tbl_salas ON id_sala_mesa = id_sala WHERE tipo_sala = :tipo_sala';
+$sql0 = 'SELECT nombre_mesa FROM tbl_mesas INNER JOIN tbl_salas ON id_sala_mesa = id_sala WHERE nombre_sala = :tipo_sala ';
 $stmt0 = $conn->prepare($sql0);
 $stmt0->bindParam(":tipo_sala", $sala);
 $stmt0->execute();

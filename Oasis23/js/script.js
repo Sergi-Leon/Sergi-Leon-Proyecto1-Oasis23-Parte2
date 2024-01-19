@@ -5,25 +5,31 @@ xhr.onload = function () {
     if (xhr.status == 200) {
         tiposala.innerHTML = "";
         var json = JSON.parse(xhr.responseText);
-        console.log(json);
         tiposala.innerHTML = json;
     }
 };
 xhr.send();
 tiposala.addEventListener('change', function () {
     saladato = tiposala.value;
-    sala_mesa(saladato);
+    sala(saladato);
+    mostrarTabla();
+    mostrarTabla2();
 });
 var salas = document.getElementById('sala');
 var mesas = document.getElementById('mesa');
 var estados = document.getElementById('estado');
 
-salas.addEventListener('change', mostrarTabla);
+salas.addEventListener('change',function (){ 
+    mostrarTabla();
+    mostrarTabla2();
+    mesa(salas.value)
+});
 mesas.addEventListener('change', mostrarTabla);
 estados.addEventListener('change', mostrarTabla);
+mesas.addEventListener('change', mostrarTabla2);
+estados.addEventListener('change', mostrarTabla2);
 
-
-function sala_mesa(valor) {
+function sala(valor) {
     var sala = document.getElementById("sala");
     var xhr = new XMLHttpRequest();
     var formdata = new FormData();
@@ -37,7 +43,8 @@ function sala_mesa(valor) {
         }
     };
     xhr.send(formdata);
-    
+}
+function mesa(valor) {
     var mesa = document.getElementById("mesa");
     var xhr2 = new XMLHttpRequest();
     var formdata2 = new FormData();
@@ -51,7 +58,8 @@ function sala_mesa(valor) {
         }
     };
     xhr2.send(formdata2);
-
+}
+function estado(valor) {
     var estado = document.getElementById("estado");
     var xhr3 = new XMLHttpRequest();
     var formdata3 = new FormData();
@@ -66,19 +74,14 @@ function sala_mesa(valor) {
     };
     xhr3.send(formdata3);
 }
-
 function mostrarTabla() {
     var tiposala = document.getElementById('tiposala').value;
-    console.log(tiposala);
     var sala = document.getElementById('sala').value;
-    console.log(sala);
     var mesa = document.getElementById('mesa').value;
-    console.log(mesa);
     var estado = document.getElementById('estado').value;
-    console.log(sala);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "./ajax/mostrarTabla.php");
+    xhr.open("POST", "./ajax/mostrarDatos.php");
 
     // Configurar la función de devolución de llamada para manejar la respuesta
     xhr.onreadystatechange = function () {
@@ -93,6 +96,27 @@ function mostrarTabla() {
     xhr.send("tiposala=" + tiposala + "&sala=" + sala + "&mesa=" + mesa + "&estado=" + estado);
 }
 
+function mostrarTabla2() {
+    var tiposala = document.getElementById('tiposala').value;
+    var sala = document.getElementById('sala').value;
+    var mesa = document.getElementById('mesa').value;
+    var estado = document.getElementById('estado').value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "./ajax/mostrarDatos2.php");
+
+    // Configurar la función de devolución de llamada para manejar la respuesta
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Actualizar el contenido de la tabla con la respuesta del servidor
+            document.getElementById('tabla_resultados2').innerHTML = xhr.responseText;
+        }
+    };
+
+    // Enviar los datos de los filtros al servidor
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("tiposala=" + tiposala + "&sala=" + sala + "&mesa=" + mesa + "&estado=" + estado);
+}
 
 function limpiarForm() {
     var formulario = document.forms["formulario-filtros"];
