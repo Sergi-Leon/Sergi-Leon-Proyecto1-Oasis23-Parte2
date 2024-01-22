@@ -16,8 +16,6 @@ body {
     text-align: center; /* Añade esta línea para centrar las imágenes */
 }
 
-
-
 h1 {
     font-size: 50px;
     text-align: center;
@@ -65,28 +63,3 @@ img.libre {
 img.ocupada {
     background-color: indianred; /* Fondo rojo para mesas ocupadas */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

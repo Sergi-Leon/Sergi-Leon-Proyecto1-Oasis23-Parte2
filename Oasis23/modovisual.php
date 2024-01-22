@@ -15,14 +15,20 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modo Visualización</title>
     <link rel="stylesheet" href="css/modovisual.css">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">    
+    <link rel="stylesheet" type="text/css" href="./css/style.css"> 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
 </head>
 <body>
-<form>
-    <a href="index.php">
-        <img src="./img/botonvolver.png" alt="Volver" class="volver-button">
-    </a>
-</form>
+<?php
+include("header2.php");
+if ($_SESSION["id_cargo"] == 1) {
+echo "<form>";
+    echo "<a href='index.php'>";
+        echo "<img src='./img/botonvolver.png' alt='Volver' class='volver-button'>";
+    echo "</a>";
+echo "</form>";
+}
+?>
 <br>
 <br>
 <br>
@@ -45,7 +51,6 @@ $sql0 = 'SELECT * FROM tbl_mesas INNER JOIN tbl_salas ON id_sala_mesa = id_sala'
     $sillas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     ?>
-
     <form name="formulario-filtros" method="post" action="">
         <div class="filtro-salas">
             <label for="tiposala">Tipo de Sala:</label>

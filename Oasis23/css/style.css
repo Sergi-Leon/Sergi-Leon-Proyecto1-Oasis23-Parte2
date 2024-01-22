@@ -122,3 +122,18 @@ th, td {
 th {
     background-color: #ffe799;  
 }
+
+.volver-button {
+    width: fit-content;
+    position: absolute;
+    width: 80px; /* Ajusta el ancho según tus necesidades */
+    height: 80px; /* Ajusta la altura según tus necesidades */
+    border-radius: 50%; /* Hace que la imagen sea redonda */
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Agrega una transición para suavizar el efecto de hover */
+}
+
+.volver-button:hover {
+    transform: scale(1.1); /* Aumenta ligeramente el tamaño al pasar el ratón sobre el botón */
+}

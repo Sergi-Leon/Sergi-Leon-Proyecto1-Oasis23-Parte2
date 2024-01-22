@@ -10,7 +10,7 @@ if (!isset($_POST['login'])) {
 
     try {
         // Consulta SQL para seleccionar el nombre de usuario y la contraseña hash de la base de datos
-        $sql = $conn->prepare("SELECT id_camarero, username_camarero, pwd_camarero FROM tbl_camareros WHERE username_camarero = :user");
+        $sql = $conn->prepare("SELECT id_camarero, username_camarero, pwd_camarero, id_cargo FROM tbl_camareros WHERE username_camarero = :user");
         $sql->bindParam(":user", $user);
         $sql->execute();
         $result = $sql->fetch();
@@ -22,7 +22,12 @@ if (!isset($_POST['login'])) {
             if (password_verify($pwd, $pwd2_encript)) {
                 $_SESSION['user'] = $result['id_camarero'];
                 $_SESSION['username'] = $result['username_camarero'];
-                header('Location: ../index.php');
+                $_SESSION['id_cargo'] = $result['id_cargo'];
+                if ($result['id_cargo'] == 1 || $result['id_cargo'] == 3) {
+                    header('Location: ../index.php');
+                } else {
+                    header('Location: ../modovisual.php');
+                }
             } else {
                 header('Location: ../login.php?fallo=0');
             }

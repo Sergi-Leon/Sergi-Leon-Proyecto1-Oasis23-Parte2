@@ -14,19 +14,6 @@
         header("location: ./login.php");
     }
     $username = $_SESSION['username'];
-
-    echo "<script>
-        window.onload = function() {
-            if (!localStorage.getItem('alertBienvenido')) {
-                Swal.fire({
-                    title: 'Bienvenido $username',
-                    icon: 'success',
-                });
-                localStorage.setItem('alertBienvenido', 'true');
-            }
-        };
-    </script>";
-
     include_once("proc/conexion.php");
 
     $sql0 = 'SELECT * FROM tbl_mesas INNER JOIN tbl_salas ON id_sala_mesa = id_sala';
@@ -42,25 +29,34 @@
     $stmt->execute();
     $sillas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    include("header.php");
+    include("header2.php");
     ?>
-
+    <form>
+    <a href='index.php'>
+        <img src='./img/botonvolver.png' alt='Volver' class='volver-button'>
+    </a>
+    </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <form name="formulario-filtros" method="post" action="">
         <div class="filtro-salas">
-            <label for="tiposala">Tipo de Sala:</label>
-            <select id="tiposala" name="tiposala">
+            <label for="nombre">Nombre:</label>
+            <select id="nombre" name="nombre">
                 <option value="%">Todos</option>
             </select>
-            <label for="sala">Sala:</label>
-            <select id="sala" name="sala">
+            <label for="apellidos">Apellidos:</label>
+            <select id="apellidos" name="apellidos">
                 <option value="%">Todas</option>
             </select>
-            <label for="mesa">Mesa:</label>
-            <select id="mesa" name="mesa">
+            <label for="correo">Correo:</label>
+            <select id="correo" name="correo">
                 <option value="%">Todas</option>
             </select>
-            <label for="estado">Estado:</label>
-            <select id="estado" name="estado">
+            <label for="telefono">Telefono:</label>
+            <select id="telefono" name="telefono">
                 <option value="%">Todas</option>
                 <option value="Libre">Libre</option>
                 <option value="Ocupada">Ocupada</option>
@@ -71,20 +67,6 @@
             <div class="filtro-salas filtro-medio">
                 <div>
                     <a type="button" href="">Limpiar Filtros</a>
-                </div>
-            </div>
-            <div class="filtro-salas filtro-medio">
-                <div class="filtro-visual">
-                <a
-                    <?php if ($_SESSION["tipo_sala"] == "%") {
-                        echo "style='pointer-events:none;'";
-                    } ?>
-                    href='modovisual.php?tipo_sala=<?php echo $_SESSION["tipo_sala"] ?>'>Ver Mesas</a>
-                </div>
-            </div>
-            <div class="filtro-salas filtro-medio">
-                <div>
-                    <a type="button" href="./CRUD_users.php">Gestionar usuarios</a>
                 </div>
             </div>
         </div>
