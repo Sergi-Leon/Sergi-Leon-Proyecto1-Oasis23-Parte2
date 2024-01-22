@@ -17,7 +17,7 @@
             <a href="./historial.php"><p>HISTORIAL</p></a>
             <a href="./perfil.php"><p>PERFIL</p></a>
             <a href="./estadisticas.php"><p>ESTADÍSTICAS</p></a>
-            <a onclick="confirmarCerrarSesion()" href="#"><p>CERRAR SESION</p></a>
+            <a id="btnSesion" href="#"><p>CERRAR SESION</p></a>
         </div>
     </div>
 </body>

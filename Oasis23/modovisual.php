@@ -37,7 +37,7 @@ echo "</form>";
 <?php
 include './proc/conexion.php';
 
-$sql0 = 'SELECT * FROM tbl_mesas INNER JOIN tbl_salas ON id_sala_mesa = id_sala';
+    $sql0 = 'SELECT * FROM tbl_mesas INNER JOIN tbl_salas ON id_sala_mesa = id_sala';
     $stmt0 = $conn->query($sql0);
     $sillas0 = $stmt0->fetchAll(PDO::FETCH_ASSOC);
 
@@ -82,9 +82,8 @@ $sql0 = 'SELECT * FROM tbl_mesas INNER JOIN tbl_salas ON id_sala_mesa = id_sala'
         </div>
     </form>
 
-    <div id="tabla_resultados2">
-        <table>
-            <tbody>
+    <div id="mostrarImagen">
+        <img src="" >
             <script>
             function confirmarAccion(accion, mesaId) {
                 Swal.fire({
@@ -96,16 +95,14 @@ $sql0 = 'SELECT * FROM tbl_mesas INNER JOIN tbl_salas ON id_sala_mesa = id_sala'
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = './proc/ocupar.php?mesa=' + mesaId + '&estado=' + (accion === 'Ocupar' ? 'Ocupada' : 'Libre');
+                        window.location.href = './proc/ocupar2.php?mesa=' + mesaId + '&estado=' + (accion === 'Ocupar' ? 'Ocupada' : 'Libre');
                     }
                 });
             }
             </script>
 
-            </tbody>
-        </table>
     </div>
 </body>
 </html>
-<script src="js/script.js"></script>
-<script>window.onload = mostrarTabla2();</script>
+<script src="js/CRUD_imagenes.js"></script>
+<script>window.onload = mostrarImagen();</script>

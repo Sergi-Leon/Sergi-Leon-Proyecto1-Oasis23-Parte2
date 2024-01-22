@@ -13,7 +13,7 @@ xhr.send();
 tiposala.addEventListener('change', function () {
     saladato = tiposala.value;
     sala(saladato);
-    mostrarTabla();
+    mostrarImagen();
 });
 
 var salas = document.getElementById('sala');
@@ -21,11 +21,11 @@ var mesas = document.getElementById('mesa');
 var estados = document.getElementById('estado');
 
 salas.addEventListener('change',function (){ 
-    mostrarTabla();
+    mostrarImagen();
     mesa(salas.value)
 });
-mesas.addEventListener('change', mostrarTabla);
-estados.addEventListener('change', mostrarTabla);
+mesas.addEventListener('change', mostrarImagen);
+estados.addEventListener('change', mostrarImagen);
 
 function sala(valor) {
     var sala = document.getElementById("sala");
@@ -73,20 +73,20 @@ function estado(valor) {
     xhr3.send(formdata3);
 }
 
-function mostrarTabla() {
+function mostrarImagen() {
     var tiposala = document.getElementById('tiposala').value;
     var sala = document.getElementById('sala').value;
     var mesa = document.getElementById('mesa').value;
     var estado = document.getElementById('estado').value;
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "./ajax/mostrarDatos.php");
+    xhr.open("POST", "./ajax/mostrarImagen.php");
 
     // Configurar la función de devolución de llamada para manejar la respuesta
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             // Actualizar el contenido de la tabla con la respuesta del servidor
-            document.getElementById('tabla_resultados').innerHTML = xhr.responseText;
+            document.getElementById('mostrarImagen').innerHTML = xhr.responseText;
         }
     };
 
@@ -106,6 +106,21 @@ function toggleFilters() {
     for (var i = 0; i < filtroSalas.length; i++) {
         filtroSalas[i].style.display = (filtroSalas[i].style.display === 'flex') ? 'none' : 'flex';
     }
+}
+
+function confirmarAccion(accion, mesaId) {
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¿Quieres ' + accion + '?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Sí, ' + accion,
+        cancelButtonText: 'Cancelar'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location.href = '../proc/ocupar.php?mesa=' + mesaId + '&estado=' + (accion === 'Ocupar' ? 'Ocupada' : 'Libre');
+        }
+    });
 }
 
 var btnSesion = document.getElementById("btnSesion");

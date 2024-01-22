@@ -13,7 +13,7 @@ CREATE TABLE `tbl_camareros` (
   `nombre_camarero` varchar(45) NOT NULL,
   `apellidos_camarero` varchar(60) NOT NULL,
   `correo_camarero` varchar(80) NOT NULL,
-  `telfono_camarero` char(9) NOT NULL,
+  `telefono_camarero` char(9) NOT NULL,
   `pwd_camarero` varchar(80) NOT NULL,
   `imagen_camarero` varchar(120) DEFAULT NULL,
   `id_cargo` int(11) NOT NULL,
@@ -66,7 +66,7 @@ INSERT INTO `tbl_cargo` (`id_cargo`, `nombre_cargo`) VALUES
 (2, 'Camarero'),
 (3, 'Mantenimiento');
 
-INSERT INTO `tbl_camareros` (`id_camarero`, `username_camarero`, `nombre_camarero`, `apellidos_camarero`, `correo_camarero`, `telfono_camarero`, `pwd_camarero`, `imagen_camarero`, `id_cargo`) VALUES
+INSERT INTO `tbl_camareros` (`id_camarero`, `username_camarero`, `nombre_camarero`, `apellidos_camarero`, `correo_camarero`, `telefono_camarero`, `pwd_camarero`, `imagen_camarero`, `id_cargo`) VALUES
 (1, 'ivanmoreno', 'Ivan', 'Moreno', 'imoreno@oasis.com', '111111111', '$2y$10$wigWyJ26umFhiMWROr/DK.NqNltLAI4M2dRT5l4MyPPkoy4YN5rW6', './img/ivan.jpg', 3),
 (2, 'adricamarero', 'Adrian', 'Herraez', 'aherraez@oasis.com', '222222222', '$2y$10$wigWyJ26umFhiMWROr/DK.NqNltLAI4M2dRT5l4MyPPkoy4YN5rW6', './img/adri.jpg', 2),
 (3, 'sergioleon', 'Sergio', 'Leon', 'sleon@oasis.com', '333333333', '$2y$10$wigWyJ26umFhiMWROr/DK.NqNltLAI4M2dRT5l4MyPPkoy4YN5rW6', './img/sergio.jpg', 1),

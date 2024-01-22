@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/modovisual.css">
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
-    <title>Document</title>
-</head>
-<body>
 <?php
-
 session_start();
+
 if (!isset($_SESSION["user"])) {
     header("location: ../login.php");
 }
@@ -68,8 +58,7 @@ if($_POST["estado"]!="%"){
 $stmt->execute();
 $sillas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-echo '<table>';
-echo '<tbody>';
+
 if (!$sillas == 0) {
     foreach ($sillas as $fila) {
         // Imprimir cada fila de la tabla
@@ -92,9 +81,4 @@ if (!$sillas == 0) {
     echo "<tr><td>No hay mesas disponibles</td></tr>";
 }
 
-echo '</tbody>';
-echo '</table>';
 ?>
-    
-</body>
-</html>

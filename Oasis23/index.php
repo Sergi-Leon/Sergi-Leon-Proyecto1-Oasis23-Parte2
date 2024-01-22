@@ -90,9 +90,12 @@
         </div>
     </form>
 
-    <div class="div-table" id="tabla_resultados">
+    <div class="div-table">
         <table class="table table-striped">
-            <tbody>
+            <thead>
+                <tr><th>Tipo Sala</th><th>Nombre Sala</th><th>Mesa</th><th>Sillas</th><th>Estado</th><th>Ocupar</th></tr>
+            </thead>
+            <tbody id="tabla_resultados">
             <script>
             function confirmarAccion(accion, mesaId) {
                 Swal.fire({
@@ -109,7 +112,6 @@
                 });
             }
             </script>
-
             </tbody>
         </table>
     </div>

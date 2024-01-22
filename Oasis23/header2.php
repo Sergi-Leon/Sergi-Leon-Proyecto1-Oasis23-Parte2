@@ -9,7 +9,7 @@
 <body>
     <div class="navbar">
         <div class="enlaces">
-            <a onclick="confirmarCerrarSesion()" href="#"><p>CERRAR SESION</p></a>
+            <a id="btnSesion" href="#"><p>CERRAR SESION</p></a>
         </div>
     </div>
 </body>
