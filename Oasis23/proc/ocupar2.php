@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION["user"]) || !isset($_GET["mesa"]) || !isset($_GET["estado"])) {
-    header("Location: ../index.php");
+    header("Location: ../modovisual.php");
 }
 
 $id_camarero = $_SESSION["user"];

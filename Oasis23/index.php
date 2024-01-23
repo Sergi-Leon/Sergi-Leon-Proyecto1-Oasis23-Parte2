@@ -1,3 +1,15 @@
+<?php
+    session_start();
+    $username = $_SESSION['username'];
+    $cargo = $_SESSION['id_cargo'];
+    if (!isset($_SESSION["user"])) {
+        header("location: ./login.php");
+        exit();
+    }elseif ($cargo == 2) {
+        header("location: ./modovisual.php");
+        exit();
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +21,6 @@
 </head>
 <body>
     <?php
-    session_start();
-    if (!isset($_SESSION["user"])) {
-        header("location: ./login.php");
-    }
-    $username = $_SESSION['username'];
-
     echo "<script>
         window.onload = function() {
             if (!localStorage.getItem('alertBienvenido')) {

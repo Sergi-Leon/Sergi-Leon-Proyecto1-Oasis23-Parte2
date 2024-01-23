@@ -7,13 +7,64 @@ body {
 .container {
     border-radius: 20px;
     background-color: rgba(255, 255, 255, 0.8); /* Color crema con opacidad */
-    max-width: 800px; /* Ajusta el ancho máximo según tus necesidades */
+    max-width: 1000px; /* Ajusta el ancho máximo según tus necesidades */
     margin: 0 auto; /* Centra el contenedor en la página */
     padding: 20px; /* Añade espacio alrededor del contenido */
 }
 
 .mesa-group {
-    text-align: center; /* Añade esta línea para centrar las imágenes */
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mesa-item {
+    flex: 0 0 calc(25% - 20px); /* Establece el ancho de cada mesa al 25% del contenedor menos los márgenes */
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+.mesa-imagen {
+    width: 100%; /* Ajusta el tamaño al 100% del contenedor */
+    height: auto; /* Ajusta la altura automáticamente */
+    border: 2px solid #333;
+    border-radius: 5px;
+}
+
+.nombre-mesa {
+    margin-top: 10px;
+    font-weight: bold;
+    text-align: center; /* Centra el texto dentro del contenedor */
+}
+
+.boton-ocupar button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000000;
+}
+
+/* Estilos específicos para mesas libres */
+.mesa-libre {
+    background-color: #4CAF50; /* Verde */
+    color: #ffffff;
+}
+
+/* Estilos específicos para mesas ocupadas */
+.mesa-ocupada {
+    background-color: #FF6347; /* Rojo */
+    color: #ffffff;
+}
+
+.mesa-libre:hover {
+    background-color: #69b96d; /* Cambia el color al pasar el ratón sobre el botón */
+}
+
+.mesa-ocupada:hover {
+    background-color: #f27862; /* Cambia el color al pasar el ratón sobre el botón */
 }
 
 h1 {
@@ -21,7 +72,8 @@ h1 {
     text-align: center;
     color:#4D382D; /* Color crema para el texto */
 }
-h2{
+
+h2 {
     text-align: center;
     color:#4D382D;
 }
@@ -41,21 +93,20 @@ h2{
     transform: scale(1.1); /* Aumenta ligeramente el tamaño al pasar el ratón sobre el botón */
 }
 
-
-a {
+button {
     display: inline-block;
     margin: 10px;
     text-decoration: none;
 }
 
 img {
-    position: center;
     width: 150px; /* Ajusta el tamaño según tus necesidades */
     height: 150px; /* Ajusta el tamaño según tus necesidades */
     border: 2px solid #333; /* Añade un borde a las imágenes */
     border-radius: 5px; /* Añade esquinas redondeadas */
 }
 
+/* Estilos específicos para mesas libres y ocupadas */
 img.libre {
     background-color: lightgreen; /* Fondo verde para mesas libres */
 }

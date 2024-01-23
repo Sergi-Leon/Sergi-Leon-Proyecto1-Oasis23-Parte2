@@ -82,8 +82,7 @@ include './proc/conexion.php';
         </div>
     </form>
 
-    <div id="mostrarImagen">
-        <img src="" >
+    <div id="mostrarImagen" class="container mesa-group">
             <script>
             function confirmarAccion(accion, mesaId) {
                 Swal.fire({

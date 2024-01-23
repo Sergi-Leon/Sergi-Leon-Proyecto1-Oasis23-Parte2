@@ -137,3 +137,22 @@ th {
 .volver-button:hover {
     transform: scale(1.1); /* Aumenta ligeramente el tamaño al pasar el ratón sobre el botón */
 }
+
+.mesa-libre {
+    background-color: #4CAF50; /* Verde */
+    color: #ffffff;
+}
+
+/* Estilos específicos para mesas ocupadas */
+.mesa-ocupada {
+    background-color: #FF6347; /* Rojo */
+    color: #ffffff;
+}
+
+.mesa-libre:hover {
+    background-color: #69b96d; /* Cambia el color al pasar el ratón sobre el botón */
+}
+
+.mesa-ocupada:hover {
+    background-color: #f27862; /* Cambia el color al pasar el ratón sobre el botón */
+}

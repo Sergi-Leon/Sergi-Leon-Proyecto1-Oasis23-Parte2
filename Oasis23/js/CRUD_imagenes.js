@@ -108,21 +108,6 @@ function toggleFilters() {
     }
 }
 
-function confirmarAccion(accion, mesaId) {
-    Swal.fire({
-        title: '¿Estás seguro?',
-        text: '¿Quieres ' + accion + '?',
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Sí, ' + accion,
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            window.location.href = '../proc/ocupar.php?mesa=' + mesaId + '&estado=' + (accion === 'Ocupar' ? 'Ocupada' : 'Libre');
-        }
-    });
-}
-
 var btnSesion = document.getElementById("btnSesion");
 btnSesion.addEventListener('click', function () {
     cerrarSesion = btnSesion.value;

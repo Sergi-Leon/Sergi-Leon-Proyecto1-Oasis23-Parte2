@@ -3,6 +3,7 @@ session_start();
 
 if (!isset($_SESSION["user"])) {
     header("location: ../login.php");
+    exit();
 }
 include("../proc/conexion.php");
 $filtro="";
@@ -70,11 +71,10 @@ if (!$sillas == 0) {
         echo '<td>' . $fila["estado_mesa"] . '</td>';
         $fila_id_mesa = $fila["id_mesa"];
         if ($fila["estado_mesa"] == "Libre") {
-            echo "<td id='mesa_libre'><a href='#' onclick='confirmarAccion(\"Ocupar\", " . $fila_id_mesa . ")'>Ocupar</a></td>";
+            echo "<td id='mesa_libre'><button class='mesa-libre' onclick='confirmarAccion(\"Ocupar\", " . $fila_id_mesa . ")'>Ocupar</button></td>";
         } else {
-            echo "<td id='mesa_ocupada'><a href='#' onclick='confirmarAccion(\"Cancelar Ocupacion\", " . $fila_id_mesa . ")'>Cancelar Ocupacion</a></td>";
+            echo "<td id='mesa_ocupada'><button class='mesa-ocupada' onclick='confirmarAccion(\"Cancelar Ocupacion\", " . $fila_id_mesa . ")'>Cancelar Ocupacion</button></td>";
         }
-
         echo "</tr>";
     }
 } else {
