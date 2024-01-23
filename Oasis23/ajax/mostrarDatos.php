@@ -71,9 +71,10 @@ if (!$sillas == 0) {
         echo '<td>' . $fila["estado_mesa"] . '</td>';
         $fila_id_mesa = $fila["id_mesa"];
         if ($fila["estado_mesa"] == "Libre") {
-            echo "<td id='mesa_libre'><button class='mesa-libre' onclick='confirmarAccion(\"Ocupar\", " . $fila_id_mesa . ")'>Ocupar</button></td>";
+            echo "<script src='../js/ocupar.js'></script>";
+            echo "<td><button id='btnOcuDesocu' class='mesa-libre' onclick='confirmarAccion(\"Ocupar\", " . $fila_id_mesa . ",1)'>Ocupar</button></td>";
         } else {
-            echo "<td id='mesa_ocupada'><button class='mesa-ocupada' onclick='confirmarAccion(\"Cancelar Ocupacion\", " . $fila_id_mesa . ")'>Cancelar Ocupacion</button></td>";
+            echo "<td><button id='btnOcuDesocu' class='mesa-ocupada' onclick='confirmarAccion(\"Cancelar Ocupacion\", " . $fila_id_mesa . ",1)'>Cancelar Ocupacion</button></td>";
         }
         echo "</tr>";
     }

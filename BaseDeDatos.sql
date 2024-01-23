@@ -47,9 +47,10 @@ CREATE TABLE `tbl_reservas` (
 
 CREATE TABLE `tbl_reservas2` (
   `id_reserva2` int(11) NOT NULL AUTO_INCREMENT,
-  `hora_inicio_reserva2` datetime NOT NULL,
-  `hora_final_reserva2` datetime DEFAULT NULL,
-  `id_camarero_reserva2` int(11) NOT NULL,
+  `nombre_reserva2` varchar(20) NOT NULL,
+  `num_personas_reserva2` INT NOT NULL,
+  `fecha_reserva2` date NOT NULL,
+  `hora_reserva2` time NOT NULL,
   `id_mesa_reserva2` int(11) NOT NULL,
   PRIMARY KEY (`id_reserva2`)
 );
@@ -69,10 +70,6 @@ REFERENCES `tbl_camareros` (`id_camarero`);
 ALTER TABLE `tbl_reservas` ADD CONSTRAINT `reservas_mesas_fk`
 FOREIGN KEY (`id_mesa_reserva`)
 REFERENCES `tbl_mesas` (`id_mesa`);
-
-ALTER TABLE `tbl_reservas2` ADD CONSTRAINT `reservas_camareros_fk2`
-FOREIGN KEY (`id_camarero_reserva2`)
-REFERENCES `tbl_camareros` (`id_camarero`);
 
 ALTER TABLE `tbl_reservas2` ADD CONSTRAINT `reservas_mesas_fk2`
 FOREIGN KEY (`id_mesa_reserva2`)

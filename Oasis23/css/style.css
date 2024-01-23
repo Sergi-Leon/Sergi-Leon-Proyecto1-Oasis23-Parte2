@@ -46,12 +46,10 @@ form[name="formulario-filtros"], .div-table {
             text-decoration: none;
             width: 100%;
             display: block;
-            position: absolute;
             top: 0;
             left: 0;
             text-align: center;
             height: 100%;
-            padding-top: 6px;
             transition: 300ms;
             cursor: pointer;
 
@@ -72,7 +70,7 @@ form[name="formulario-filtros"], .div-table {
 }
 
 .filtro-medio {
-    width: 50%;
+    width: 20%;
 }
 
 .filtro-visual {

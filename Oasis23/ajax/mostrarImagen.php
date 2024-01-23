@@ -86,9 +86,10 @@ if (!$sillas == 0) {
         // Imprimir el botón dentro del contenedor
         echo '<div class="boton-ocupar">';
         if ($fila["estado_mesa"] == "Libre") {
-            echo "<button id='mesa_libre' class='mesa-libre' onclick='confirmarAccion(\"Ocupar\", " . $fila_id_mesa . ")'>Ocupar</button>";
+            echo "<script src='../js/ocupar.js'></script>";
+            echo "<button id='mesa_libre' class='mesa-libre' onclick='confirmarAccion(\"Ocupar\", " . $fila_id_mesa . ",2)'>Ocupar</button>";
         } else {
-            echo "<button id='mesa_ocupada' class='mesa-ocupada' onclick='confirmarAccion(\"Cancelar Ocupacion\", " . $fila_id_mesa . ")'>Cancelar Ocupacion</button>";
+            echo "<button id='mesa_ocupada' class='mesa-ocupada' onclick='confirmarAccion(\"Cancelar Ocupacion\", " . $fila_id_mesa . ",2)'>Cancelar Ocupacion</button>";
         }
         echo '</div>';
         echo '</div>';

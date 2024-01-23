@@ -15,7 +15,6 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modo Visualización</title>
     <link rel="stylesheet" href="css/modovisual.css">
-    <link rel="stylesheet" type="text/css" href="./css/style.css"> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>   
 </head>
 <body>
@@ -79,27 +78,16 @@ include './proc/conexion.php';
                     <a type="button" href="">Limpiar Filtros</a>
                 </div>
             </div>
+            <div class="filtro-salas filtro-medio">
+                <div>
+                    <a type="button" href="./reservar.php">Reservar</a>
+                </div>
+            </div>
         </div>
     </form>
 
     <div id="mostrarImagen" class="container mesa-group">
-            <script>
-            function confirmarAccion(accion, mesaId) {
-                Swal.fire({
-                    title: '¿Estás seguro?',
-                    text: '¿Quieres ' + accion + '?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Sí, ' + accion,
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = './proc/ocupar2.php?mesa=' + mesaId + '&estado=' + (accion === 'Ocupar' ? 'Ocupada' : 'Libre');
-                    }
-                });
-            }
-            </script>
-
+        <script src="js/ocupar.js"></script>
     </div>
 </body>
 </html>

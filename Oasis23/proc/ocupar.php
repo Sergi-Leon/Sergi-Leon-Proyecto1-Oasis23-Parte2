@@ -46,8 +46,11 @@ try {
     
     $stmt->closeCursor();
     $stmt2->closeCursor();
-
-    header("Location: ../index.php");
+    if($_GET["modo"]==1){
+        header("Location: ../index.php");
+    }else{
+        header("Location: ../modovisual.php");
+    }
 
 } catch (PDOException $e) {
     $conn->rollBack();

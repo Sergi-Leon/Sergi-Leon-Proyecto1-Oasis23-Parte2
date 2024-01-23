@@ -22,43 +22,36 @@ if (!isset($_SESSION['user'])) {
     $username = $_SESSION['username'];
     
     include_once("proc/conexion.php");
-    include("header.php");
+    include("header2.php");
+
+    //Dependiendo de si vengo 
+    if(isset($_GET["direccion"])){
+        echo"<a href='index.php'>
+            <img src='./img/botonvolver.png' alt='Volver' class='volver-button'>
+        </a>";
+    }else{
+        echo"<a href='modovisual.php'>
+        <img src='./img/botonvolver.png' alt='Volver' class='volver-button'>
+        </a>"; 
+    }
     ?>
     <form>
-    <a href='index.php'>
-        <img src='./img/botonvolver.png' alt='Volver' class='volver-button'>
-    </a>
     </form>
     <br>
     <br>
     <br>
     <br>
     <br>
-    <form name="formulario-filtros" method="post" action="">
-        <div class="filtro-salas">
-            <label for="buscar">Buscar:</label>
-            <input type="text" name="buscar" id="buscar">
-        </div>
-
-        <div class="filtro-salas2">
-            <div class="filtro-salas filtro-medio">
-                <div>
-                    <a type="button" href="">Limpiar Filtros</a>
-                </div>
-            </div>
-        </div>
-    </form>
-
     <div class="div-table">
         <table class="table table-striped">
             <thead>
-                <tr><th>Username</th><th>Nombre</th><th>Apellidos</th><th>Correo</th><th>Telefono</th><th>Editar</th><th>Eliminar</th></tr>
+                <tr><th>Nombre</th><th>Numero Personas</th><th>Fecha</th><th>Hora</th><th>Mesa</th></tr>
             </thead>
-            <tbody id="tabla_usuarios">
+            <tbody id="tabla_reservas">
             </tbody>
         </table>
     </div>
 </body>
 </html>
-<script src="js/CRUD_usuarios.js"></script>
-<script>window.onload = mostrarUsuarios();</script>
+<script src="js/CRUD_reservas.js"></script>
+<script>window.onload = mostrarReservas();</script>

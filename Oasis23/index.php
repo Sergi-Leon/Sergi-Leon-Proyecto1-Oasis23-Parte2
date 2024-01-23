@@ -48,9 +48,16 @@
     $stmt->execute();
     $sillas = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    //ID del usuario
+    $id = $_SESSION['user'];
+    $sqlUser = 'SELECT * FROM tbl_camareros WHERE id_camarero = :id_camarero;';
+    $stmtUser = $conn->prepare($sqlUser);
+    $stmtUser->execute();
+    $users = $stmtUser->fetchAll(PDO::FETCH_ASSOC);
+
     include("header.php");
     ?>
-
+    <p id='id_user' style='display: none;'><?php echo $_SESSION['user']; ?></p>
     <form name="formulario-filtros" method="post" action="">
         <div class="filtro-salas">
             <label for="tiposala">Tipo de Sala:</label>
@@ -93,6 +100,11 @@
                     <a type="button" href="./CRUD_users.php">Gestionar usuarios</a>
                 </div>
             </div>
+            <div class="filtro-salas filtro-medio">
+                <div>
+                    <a type="button" href="./reservar.php?direccion=1">Reservar</a>
+                </div>
+            </div>
         </div>
     </form>
 
@@ -102,22 +114,7 @@
                 <tr><th>Tipo Sala</th><th>Nombre Sala</th><th>Mesa</th><th>Sillas</th><th>Estado</th><th>Ocupar</th></tr>
             </thead>
             <tbody id="tabla_resultados">
-            <script>
-            function confirmarAccion(accion, mesaId) {
-                Swal.fire({
-                    title: '¿Estás seguro?',
-                    text: '¿Quieres ' + accion + '?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Sí, ' + accion,
-                    cancelButtonText: 'Cancelar'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = './proc/ocupar.php?mesa=' + mesaId + '&estado=' + (accion === 'Ocupar' ? 'Ocupada' : 'Libre');
-                    }
-                });
-            }
-            </script>
+            <script src="js/ocupar.js"></script>
             </tbody>
         </table>
     </div>
