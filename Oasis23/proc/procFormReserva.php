@@ -7,8 +7,6 @@ if (!isset($_SESSION["user"])) {
 }
 include ("./conexion.php");
 
-
-
 try {
     $nombreRese = $_POST['nombreRese'];
     $numPersoRese = $_POST['numPersoRese'];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-01-2024 a las 16:28:03
+-- Tiempo de generación: 24-01-2024 a las 22:44:04
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 7.4.33
 
@@ -228,11 +228,12 @@ CREATE TABLE `tbl_reservas2` (
 --
 
 INSERT INTO `tbl_reservas2` (`id_reserva2`, `nombre_reserva2`, `num_personas_reserva2`, `fecha_reserva2`, `hora_reserva2`, `id_mesa_reserva2`) VALUES
-(1, 'prueba', 4, '2024-01-24', '21:00:00', 17),
-(3, 'prueba2', 6, '2024-01-25', '16:56:00', 4),
-(4, 'prueba3', 6, '2024-01-26', '15:06:00', 9),
-(5, 'JinQuan', 8, '2024-01-27', '18:08:00', 3),
-(12, 'Joel', 12, '2024-02-01', '20:30:00', 9);
+(22, 'oejrpç', 5, '2024-01-27', '19:15:00', 14),
+(26, 'alberto', 6, '2024-01-25', '20:00:00', 16),
+(27, 'agnes', 44, '2024-01-25', '20:00:00', 16),
+(28, 'feop', 4, '2024-01-24', '18:36:00', 13),
+(29, 'prueba5', 5, '2024-01-26', '20:00:00', 16),
+(30, 'prueba8', 8, '2024-01-23', '20:00:00', 16);
 
 -- --------------------------------------------------------
 
@@ -338,7 +339,7 @@ ALTER TABLE `tbl_reservas`
 -- AUTO_INCREMENT de la tabla `tbl_reservas2`
 --
 ALTER TABLE `tbl_reservas2`
-  MODIFY `id_reserva2` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_reserva2` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `tbl_salas`
