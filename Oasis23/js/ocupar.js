@@ -4,6 +4,8 @@ btnOcuDesocu.addEventListener('click', function () {
     confirmarAccion(btnLibreOcupadoMesa);
 });
 
+
+
 function confirmarAccion(accion, mesaId, modo) {
     Swal.fire({
         title: '¿Estás seguro?',

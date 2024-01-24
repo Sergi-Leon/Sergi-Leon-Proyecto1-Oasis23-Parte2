@@ -111,7 +111,7 @@
     <div class="div-table">
         <table class="table table-striped">
             <thead>
-                <tr><th>Tipo Sala</th><th>Nombre Sala</th><th>Mesa</th><th>Sillas</th><th>Estado</th><th>Ocupar</th></tr>
+                <tr><th>Tipo Sala</th><th>Nombre Sala</th><th>Mesa</th><th>Sillas</th><th>Estado</th><th>Ocupar</th><th>Modificar</th></tr>
             </thead>
             <tbody id="tabla_resultados">
             <script src="js/ocupar.js"></script>

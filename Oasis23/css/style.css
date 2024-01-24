@@ -138,13 +138,18 @@ th {
 
 .mesa-libre {
     background-color: #4CAF50; /* Verde */
-    color: #ffffff;
+    color: #000000;
 }
 
 /* Estilos específicos para mesas ocupadas */
 .mesa-ocupada {
     background-color: #FF6347; /* Rojo */
-    color: #ffffff;
+    color: #000000;
+}
+
+.mesa-modificada {
+    background-color: #e98725; /* Rojo */
+    color: #000000;
 }
 
 .mesa-libre:hover {
@@ -153,4 +158,7 @@ th {
 
 .mesa-ocupada:hover {
     background-color: #f27862; /* Cambia el color al pasar el ratón sobre el botón */
+}
+.mesa-modificada:hover {
+    background-color: #d78955; /* Cambia el color al pasar el ratón sobre el botón */
 }

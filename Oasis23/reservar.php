@@ -35,21 +35,42 @@ if (!isset($_SESSION['user'])) {
         </a>"; 
     }
     ?>
-    <form>
-    </form>
     <br>
     <br>
     <br>
     <br>
     <br>
-    <div class="div-table">
-        <table class="table table-striped">
-            <thead>
-                <tr><th>Nombre</th><th>Numero Personas</th><th>Fecha</th><th>Hora</th><th>Mesa</th></tr>
-            </thead>
-            <tbody id="tabla_reservas">
-            </tbody>
-        </table>
+    <div>
+        <div class="div-reserva">
+            <form action="./proc/procFormReserva.php" method="post">
+                <label for="nombreRese">Nombre: </label>
+                <input type="text" name="nombreRese" id="nombreRese">
+                <br>
+                <label for="numPersoRese">Nº personas: </label>
+                <input type="number" name="numPersoRese" id="numPersoRese">
+                <br>
+                <label for="fechaRese">Fecha: </label>
+                <input type="date" name="fechaRese" id="fechaRese">
+                <br>
+                <label for="horaRese">Hora: </label>
+                <input type="time" name="horaRese" id="horaRese">
+                <br>
+                <label for="mesaRese">Mesa: </label>
+                <!-- Lista desplegable con todos los nombres de las mesas -->
+                <select name="mesaRese" id="mesaRese"></select>
+                <br>
+                <input type="button" id="btnReserva" value="Reservar" onclick="FormReserva()">
+            </form>
+        </div>
+        <div class="div-table">
+            <table class="table table-striped">
+                <thead>
+                    <tr><th>Nombre</th><th>Numero Personas</th><th>Fecha</th><th>Hora</th><th>Mesa</th></tr>
+                </thead>
+                <tbody id="tabla_reservas">
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>

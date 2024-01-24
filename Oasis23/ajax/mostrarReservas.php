@@ -11,4 +11,5 @@ $stmtReservas = $conn->prepare($sqlReservas);
 $stmtReservas -> execute();
 $Reservas0 = $stmtReservas->fetchAll(PDO::FETCH_ASSOC);
 echo json_encode($Reservas0);
+
 ?>

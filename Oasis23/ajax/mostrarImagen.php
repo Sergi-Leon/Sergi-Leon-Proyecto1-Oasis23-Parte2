@@ -91,6 +91,7 @@ if (!$sillas == 0) {
         } else {
             echo "<button id='mesa_ocupada' class='mesa-ocupada' onclick='confirmarAccion(\"Cancelar Ocupacion\", " . $fila_id_mesa . ",2)'>Cancelar Ocupacion</button>";
         }
+        echo "<button id='btnModificar' class='mesa-modificada' onclick='confirmarAccion(\"Modificar\", " . $fila_id_mesa . ",2)'>Modificar</button>";
         echo '</div>';
         echo '</div>';
     }
