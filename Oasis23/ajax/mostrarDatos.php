@@ -78,7 +78,7 @@ if (!$sillas == 0) {
         } else {
             echo "<td><button id='btnOcuDesocu' class='mesa-ocupada' onclick='confirmarAccion(\"Cancelar Ocupacion\", " . $fila_id_mesa . ",1)'>Cancelar Ocupacion</button></td>";
         }
-        echo "<td><button id='btnModificar' class='mesa-modificada' onclick='modificarMesa($fila_nombre_mesa, $fila_id_mesa, $fila_sillas_mesa)'>Modificar</button></td>";
+        echo "<td><button id='btnModificar' class='mesa-modificada' onclick='modificarMesa(\"$fila_id_mesa\", \"$fila_sillas_mesa\")'>Modificar</button></td>";
         echo "</tr>";
     }
 } else {

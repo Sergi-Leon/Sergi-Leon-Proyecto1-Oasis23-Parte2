@@ -95,16 +95,13 @@ function mostrarImagen() {
     xhr.send("tiposala=" + tiposala + "&sala=" + sala + "&mesa=" + mesa + "&estado=" + estado);
 }
 
-function modificarMesa(nombreMesa, idMesa, numSillas) {
+function modificarMesa(idMesa, numSillas) {
     Swal.fire({
         title: `Modificar mesa`,
         html: `<form id='editarFormMesa'>
         <h4> Num sillas </h4>
-        <input id='numMesa' value='${nombreMesa}' style='display: none;'>
         <input id='idMesa' value='${idMesa}' style='display: none;'>
-        <button type='button' id='btnRestar' onclick='numRestar()'>-</button>
-        <input type='number' id='numInput' value='${numSillas}' min="1" max="12">
-        <button type='button' id='btnSumar' onclick='numSumar()'>+</button>
+        <input type='number' id='numInput' value='${numSillas}'>
         </form>`,
     showCancelButton: true,
     confirmButtonText: 'Aceptar',
@@ -116,42 +113,21 @@ function modificarMesa(nombreMesa, idMesa, numSillas) {
 }
 
 function modificarSilla() {
+    var numInput = document.getElementById('numInput').value;
     var idMesa = document.getElementById('idMesa').value;
-    var nombreMesa = document.getElementById('nombreMesa').value;
-    var numSillas = document.getElementById('numSillas').value;
-    var sala = document.getElementById('sala').value;
 
     var formdata = new FormData();
     formdata.append('id_mesa', idMesa);
-    formdata.append('nombre_mesa', nombreMesa);
-    formdata.append('sillas_mesa', numSillas);
+    formdata.append('sillas_mesa', numInput);
 
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "./ajax/modificarSilla.php");
+    xhr.open("POST", "./proc/procModificar.php");
     xhr.onload = function () {
         if (xhr.status == 200) {
-            mostrarTabla(sala.value);
+            mostrarTabla();
         }
     }
     xhr.send(formdata);
-}
-
-function numRestar() {
-    var numInput = document.getElementById('numInput');
-    var numActual = parseInt(numInput.value, 10);
-    if (numActual > 1) {
-        numActual--;
-        numInput.value = numActual;
-    }
-}
-
-function numSumar() {
-    var numInput = document.getElementById('numInput');
-    var numActual = parseInt(numInput.value, 10);
-    if (numActual < 12) {
-        numActual++;
-        numInput.value = numActual;
-    }
 }
 
 function limpiarForm() {

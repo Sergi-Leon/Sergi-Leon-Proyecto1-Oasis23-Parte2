@@ -162,3 +162,18 @@ th {
 .mesa-modificada:hover {
     background-color: #d78955; /* Cambia el color al pasar el ratón sobre el botón */
 }
+
+
+.div-reserva2 {
+    float: left;
+    width: 35%;
+    padding-left: 4vh;
+    padding-right: 2vh;
+}
+
+.div-table2 {
+    float: right;
+    width: 65%;
+    padding-right: 4vh;
+    padding-left: 2vh;
+}

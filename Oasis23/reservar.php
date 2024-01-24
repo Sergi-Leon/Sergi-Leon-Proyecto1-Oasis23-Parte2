@@ -15,6 +15,8 @@ if (!isset($_SESSION['user'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oasis23</title>
     <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 <body>
@@ -40,29 +42,39 @@ if (!isset($_SESSION['user'])) {
     <br>
     <br>
     <br>
-    <div>
-        <div class="div-reserva">
-            <form action="./proc/procFormReserva.php" method="post">
+    <div class="container">
+        <div>
+        <div class="div-reserva2 card">
+            <form id="formReserva" action="" method="post">
+            <div class="form-group">
                 <label for="nombreRese">Nombre: </label>
-                <input type="text" name="nombreRese" id="nombreRese">
-                <br>
+                <input type="text" name="nombreRese" id="nombreRese" class="form-control">
+            </div>
+            <div class="form-group">
                 <label for="numPersoRese">Nº personas: </label>
-                <input type="number" name="numPersoRese" id="numPersoRese">
-                <br>
+                <input type="number" name="numPersoRese" id="numPersoRese" class="form-control">
+            </div>
+            <div class="form-group">
                 <label for="fechaRese">Fecha: </label>
-                <input type="date" name="fechaRese" id="fechaRese">
-                <br>
+                <input type="date" name="fechaRese" id="fechaRese" class="form-control">
+            </div>
+            <div class="form-group">
                 <label for="horaRese">Hora: </label>
-                <input type="time" name="horaRese" id="horaRese">
-                <br>
+                <input type="time" name="horaRese" id="horaRese" class="form-control">
+            </div>
+            <div class="form-group">
                 <label for="mesaRese">Mesa: </label>
                 <!-- Lista desplegable con todos los nombres de las mesas -->
-                <select name="mesaRese" id="mesaRese"></select>
-                <br>
-                <input type="button" id="btnReserva" value="Reservar" onclick="FormReserva()">
+                <select name="mesaRese" id="mesaRese" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <input type="button" id="btnReserva" value="Reservar" class="form-control">
+            </div>
             </form>
         </div>
-        <div class="div-table">
+        </div>
+        
+        <div class="div-table2">
             <table class="table table-striped">
                 <thead>
                     <tr><th>Nombre</th><th>Numero Personas</th><th>Fecha</th><th>Hora</th><th>Mesa</th></tr>

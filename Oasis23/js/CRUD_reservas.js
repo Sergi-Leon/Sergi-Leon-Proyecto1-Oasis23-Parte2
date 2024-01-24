@@ -55,11 +55,13 @@ function mostrarMesas() {
 mostrarReservas('')
 
 function FormReserva() {
+    var formReserva = document.getElementById("formReserva");
     var nombreRese = document.getElementById("nombreRese").value;
     var numPersoRese = document.getElementById("numPersoRese").value;
     var fechaRese = document.getElementById("fechaRese").value;
     var horaRese = document.getElementById("horaRese").value;
     var mesaRese = document.getElementById("mesaRese").value;
+
     var formdata = new FormData();
     // Agrega los valores al FormData
     formdata.append("nombreRese", nombreRese);
@@ -72,9 +74,8 @@ function FormReserva() {
     xhr3.onload = function() {
         // console.log(xhr.responseText);
         if (xhr3.status == 200) {
-            var json = JSON.parse(xhr3.responseText);
-            // console.log(json);
             mostrarReservas('');
+            formReserva.reset();
         }
     }
     xhr3.send(formdata);
@@ -109,7 +110,7 @@ function confirmarAccion2(accion2) {
         cancelButtonText: 'Cancelar'
     }).then((result) => {
         if (result.isConfirmed) {
-            window.location.href = './proc/procFormReserva.php';
+            FormReserva();
         }
     });
 }

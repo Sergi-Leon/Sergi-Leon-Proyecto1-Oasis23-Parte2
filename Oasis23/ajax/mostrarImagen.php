@@ -83,6 +83,7 @@ if (!$sillas == 0) {
         // Imprimir la etiqueta de imagen
         echo '<img src="' . $imagen_mesa . '" alt="Mesa ' . $fila["nombre_mesa"] . '" class="mesa-imagen" width="100" height="100">';
         $fila_id_mesa = $fila["id_mesa"];
+        $fila_sillas_mesa = $fila["sillas_mesa"];
         // Imprimir el botón dentro del contenedor
         echo '<div class="boton-ocupar">';
         if ($fila["estado_mesa"] == "Libre") {
@@ -91,7 +92,7 @@ if (!$sillas == 0) {
         } else {
             echo "<button id='mesa_ocupada' class='mesa-ocupada' onclick='confirmarAccion(\"Cancelar Ocupacion\", " . $fila_id_mesa . ",2)'>Cancelar Ocupacion</button>";
         }
-        echo "<button id='btnModificar' class='mesa-modificada' onclick='confirmarAccion(\"Modificar\", " . $fila_id_mesa . ",2)'>Modificar</button>";
+        echo "<button id='btnModificar' class='mesa-modificada' onclick='modificarMesa(\"$fila_id_mesa\", \"$fila_sillas_mesa\")'>Modificar</button>";
         echo '</div>';
         echo '</div>';
     }
